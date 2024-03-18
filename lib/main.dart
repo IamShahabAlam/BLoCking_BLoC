@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -36,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void onFloatingPress() {
     Man man1 = Man(name: 'Mojo Jojo', age: 18);
-    Man man2 = Man(name: 'Mojo Jojo', age: 18);
+    Man man2 = Man(name: 'Mojo Jojo', age: 19);
 
     isEqual = man1 == man2;
 
@@ -80,18 +81,25 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 // Class created to make its instances and compare them with/without package
-class Man {
-  Man({required this.name, required this.age});
+// Extending with equatable
+// it generates code itself to compare instances
+class Man extends Equatable {
+  const Man({required this.name, required this.age});
 
   final String name;
   final int age;
+// override method and givie all params in [].
+  @override
+  List<Object?> get props => [name, age];
 
 // method which helps to compare instances of a class.
 // difficult to write for rich classes.
+  /*
   @override
   bool operator ==(Object other) =>
       identical(this, other) || other is Man && runtimeType == other.runtimeType && name == other.name && age == other.age;
 
   @override
-  int get hashCode => name.hashCode;
+  int get hashCode => name.hashCode ^ age.hashCode;
+  */
 }
