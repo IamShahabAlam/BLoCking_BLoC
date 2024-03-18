@@ -86,6 +86,8 @@ class Man {
   final String name;
   final int age;
 
+// method which helps to compare instances of a class.
+// difficult to write for rich classes.
   @override
   bool operator ==(Object other) =>
       identical(this, other) || other is Man && runtimeType == other.runtimeType && name == other.name && age == other.age;
