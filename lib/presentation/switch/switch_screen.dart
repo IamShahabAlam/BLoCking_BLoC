@@ -15,7 +15,7 @@ class _SwitchScreenState extends State<SwitchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Switch Screen")),
+      appBar: AppBar(title: const Text("Switch Screen")),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -30,9 +30,10 @@ class _SwitchScreenState extends State<SwitchScreen> {
                     context.read<SwitchBloc>().add(OnSwitchPress());
                   },
                   title: const Text("Switch BLoC"),
-                  subtitle: Text(state.isSwitchOn.toString()),
+                  subtitle: Text(state.isSwitchOn ? 'ON' : 'OFF'),
                 );
               }),
+          const SizedBox(height: 40.0),
           BlocBuilder<SwitchBloc, SwitchState>(
               buildWhen: (previous, current) => previous.sliderValue != current.sliderValue,
               builder: (context, state) {
