@@ -11,15 +11,57 @@ class SwitchScreen extends StatefulWidget {
   State<SwitchScreen> createState() => _SwitchScreenState();
 }
 
+TextEditingController commentController = TextEditingController();
+
 class _SwitchScreenState extends State<SwitchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(title: const Text("Switch Screen")),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          BlocBuilder<SwitchBloc, SwitchState>(
+            buildWhen: (previous, current) => previous.comment != current.comment,
+            builder: (context, state) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                      height: 50.0,
+                      width: double.maxFinite,
+                      margin: const EdgeInsets.symmetric(horizontal: 25.0),
+                      decoration: BoxDecoration(),
+                      child: TextField(
+                        controller: commentController,
+                        onChanged: (val) {
+                          // context.read<SwitchBloc>().add(OnCommentUpdate(comment: val!));
+                          print(state.comment);
+                        },
+                        onEditingComplete: () {
+                          context.read<SwitchBloc>().add(OnCommentUpdate(comment: commentController.text));
+                          print(state.comment);
+                        },
+                        onTapOutside: (_) {
+                          FocusManager.instance.primaryFocus!.unfocus();
+                        },
+                        decoration: const InputDecoration(
+                            hintText: 'Type Comments',
+                            labelText: 'Comments',
+                            prefixIcon: Icon(
+                              Icons.chat_outlined,
+                            ),
+                            border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(15)))),
+                      )),
+                  const SizedBox(height: 20),
+                  Text(state.comment),
+                  const SizedBox(height: 20),
+                ],
+              );
+            },
+          ),
           BlocBuilder<SwitchBloc, SwitchState>(
               buildWhen: (previous, current) => previous.isSwitchOn != current.isSwitchOn,
               builder: (context, state) {

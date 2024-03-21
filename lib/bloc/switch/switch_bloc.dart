@@ -6,6 +6,7 @@ class SwitchBloc extends Bloc<SwitchEvent, SwitchState> {
   SwitchBloc() : super(const SwitchState()) {
     on<OnSwitchPress>(_onSwitchPress);
     on<OnSlideBodySlider>(_onSlideSlider);
+    on<OnCommentUpdate>(_onCommentUpdate);
   }
 
   _onSwitchPress(SwitchEvent event, Emitter<SwitchState> emit) {
@@ -14,5 +15,9 @@ class SwitchBloc extends Bloc<SwitchEvent, SwitchState> {
 
   _onSlideSlider(OnSlideBodySlider event, Emitter<SwitchState> emit) {
     emit(state.copyWith(bodySliderValue: event.bodySliderValue, borderSliderValue: event.borderSliderValue));
+  }
+
+  _onCommentUpdate(OnCommentUpdate event, Emitter<SwitchState> emit) {
+    emit(state.copyWith(comment: event.comment));
   }
 }

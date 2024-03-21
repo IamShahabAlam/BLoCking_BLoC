@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/widgets.dart';
 
 abstract class SwitchEvent extends Equatable {
   const SwitchEvent();
@@ -15,4 +16,13 @@ class OnSlideBodySlider extends SwitchEvent {
 
   @override
   List<Object> get props => [bodySliderValue!, borderSliderValue!];
+}
+
+class OnCommentUpdate extends SwitchEvent {
+  final String comment;
+
+  const OnCommentUpdate({required this.comment});
+
+  @override
+  List<Object> get props => [comment];
 }
