@@ -5,14 +5,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class SwitchBloc extends Bloc<SwitchEvent, SwitchState> {
   SwitchBloc() : super(const SwitchState()) {
     on<OnSwitchPress>(_onSwitchPress);
-    on<OnSLideSlider>(_onSlideSlider);
+    on<OnSlideBodySlider>(_onSlideSlider);
   }
 
   _onSwitchPress(SwitchEvent event, Emitter<SwitchState> emit) {
     emit(state.copyWith(isSwitchOn: !state.isSwitchOn));
   }
 
-  _onSlideSlider(OnSLideSlider event, Emitter<SwitchState> emit) {
-    emit(state.copyWith(sliderValue: event.sliderValue));
+  _onSlideSlider(OnSlideBodySlider event, Emitter<SwitchState> emit) {
+    emit(state.copyWith(bodySliderValue: event.bodySliderValue, borderSliderValue: event.borderSliderValue));
   }
 }

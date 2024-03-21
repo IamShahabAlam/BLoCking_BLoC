@@ -8,10 +8,11 @@ abstract class SwitchEvent extends Equatable {
 
 class OnSwitchPress extends SwitchEvent {}
 
-class OnSLideSlider extends SwitchEvent {
-  final double sliderValue;
-  const OnSLideSlider({required this.sliderValue});
+class OnSlideBodySlider extends SwitchEvent {
+  final double? bodySliderValue;
+  final double? borderSliderValue;
+  const OnSlideBodySlider({this.bodySliderValue, this.borderSliderValue});
 
   @override
-  List<Object> get props => [sliderValue];
+  List<Object> get props => [bodySliderValue!, borderSliderValue!];
 }
