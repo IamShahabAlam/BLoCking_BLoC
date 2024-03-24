@@ -24,3 +24,13 @@ class OnRemoveTodo extends ToDoEvent {
 
 // TODO: make a dynamic func to add/delete from string
 }
+
+class OnTapAddDelete extends ToDoEvent {
+  final String task;
+  final bool forAdd;
+
+  const OnTapAddDelete({required this.task, this.forAdd = false});
+
+  @override
+  List<Object> get props => [task, forAdd];
+}

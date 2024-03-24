@@ -38,8 +38,9 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
                             title: Text(state.todoList[index].toString()),
                             trailing: IconButton(
                                 onPressed: () {
-                                  context.read<ToDoBloc>().add(OnRemoveTodo(task: state.todoList[index]));
+                                  // context.read<ToDoBloc>().add(OnRemoveTodo(task: state.todoList[index]));
                                   // BlocProvider.of<ToDoBloc>(context).add(OnRemoveTodo(task: state.todoList[index]));
+                                  context.read<ToDoBloc>().add(OnTapAddDelete(task: state.todoList[index]));
                                 },
                                 icon: const Icon(Icons.delete_outlined)),
                           ),
@@ -54,8 +55,9 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
       floatingActionButton: BlocBuilder<ToDoBloc, ToDoState>(builder: (_, state) {
         return FloatingActionButton(
           onPressed: () {
-            context.read<ToDoBloc>().add(OnAddTodo(task: 'Task ${state.todoList.length}'));
+            // context.read<ToDoBloc>().add(OnAddTodo(task: 'Task ${state.todoList.length}'));
             // BlocProvider.of<ToDoBloc>(context).add(OnAddTodo(task: 'Task ${state.todoList.length}'));
+            context.read<ToDoBloc>().add(OnTapAddDelete(task: 'Task ${state.todoList.length}', forAdd: true));
           },
           child: const Icon(Icons.add),
         );
