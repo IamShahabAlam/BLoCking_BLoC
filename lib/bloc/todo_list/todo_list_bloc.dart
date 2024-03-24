@@ -6,6 +6,7 @@ class ToDoBloc extends Bloc<ToDoEvent, ToDoState> {
   List todos = [];
   ToDoBloc() : super(ToDoState()) {
     todos = List.from(state.todoList);
+    // List.from copies elems of the list and fills the list but doesn't create conenction btw both lists
     on<OnAddTodo>(_onAddToDo);
     on<OnRemoveTodo>(_onRemoveToDo);
   }
