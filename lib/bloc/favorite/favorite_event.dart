@@ -5,6 +5,8 @@ abstract class FavoriteEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class FetchFavoriteData extends FavoriteEvent {}
+
 class MarkFavorite extends FavoriteEvent {}
 
 class MarkSelect extends FavoriteEvent {}
