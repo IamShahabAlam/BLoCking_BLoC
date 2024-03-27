@@ -7,6 +7,14 @@ abstract class FavoriteEvent extends Equatable {
 
 class FetchFavoriteData extends FavoriteEvent {}
 
-class MarkFavorite extends FavoriteEvent {}
+class MarkFavorite extends FavoriteEvent {
+  final int index;
+  MarkFavorite({required this.index});
+  @override
+  List<Object> get props => [];
+}
 
-class MarkSelect extends FavoriteEvent {}
+class MarkSelect extends FavoriteEvent {
+  @override
+  List<Object> get props => [];
+}
