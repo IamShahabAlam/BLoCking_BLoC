@@ -1,8 +1,8 @@
 import 'package:bloc_app/model/favorite_model.dart';
 
 class FavoriteRepository {
-  Future fetchFavoriteData() async {
-    var favoriteList = [];
+  Future<List<FavoriteModel>> fetchFavoriteData() async {
+    List<FavoriteModel> favoriteList = [];
     await Future.delayed(
       const Duration(seconds: 3),
       () {
