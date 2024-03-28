@@ -11,10 +11,17 @@ class MarkFavorite extends FavoriteEvent {
   final int index;
   MarkFavorite({required this.index});
   @override
-  List<Object> get props => [];
+  List<Object> get props => [index];
 }
 
 class MarkSelect extends FavoriteEvent {
+  final int index;
+  MarkSelect({required this.index});
+  @override
+  List<Object> get props => [index];
+}
+
+class DeleteSelectedItems extends FavoriteEvent {
   @override
   List<Object> get props => [];
 }
