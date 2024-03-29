@@ -14,7 +14,7 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
     on<DeleteSelectedItems>(_deleteSelectedItem);
   }
   _fetchFavoriteData(FavoriteEvent event, Emitter<FavoriteState> emit) async {
-    emit(state.copyWith(listStatus: ListStatus.loading));
+    emit(state.copyWith(favoriteList: [], listStatus: ListStatus.loading));
     FavoriteRepository favRepo = FavoriteRepository();
     var resp = await favRepo.fetchFavoriteData();
     emit(state.copyWith(favoriteList: List.from(resp), listStatus: ListStatus.success));
@@ -23,7 +23,12 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
   _markFavorite(MarkFavorite event, Emitter<FavoriteState> emit) {
     int i = event.index;
     List<FavoriteModel> favList = List.from(state.favoriteList);
-    favList[i].isFavorite = !(favList[i].isFavorite);
+    // 1st approach
+    // dont know why it is not working , will figure it out soon
+    // favList[i].isFavorite = !(favList[i].isFavorite);
+    // 2nd approach
+    // Toggle the favorite status of the item at index i
+    favList[i] = favList[i].copyWith(isFavorite: !favList[i].isFavorite);
 
     emit(state.copyWith(favoriteList: List.from(favList)));
   }
@@ -32,9 +37,10 @@ class FavoriteBloc extends Bloc<FavoriteEvent, FavoriteState> {
     int i = event.index;
     List<FavoriteModel> favList = List.from(state.favoriteList);
     List<FavoriteModel> selectedList = List.from(state.selectedList);
+    selectedList.contains(favList[i]) ? selectedList.remove(favList[i]) : selectedList.add(favList[i]);
+    favList[i] = favList[i].copyWith(isSelected: !favList[i].isSelected);
 
-    favList[i].isSelected = !(favList[i].isSelected);
-    selectedList.add(favList[i]);
+    // favList[i].isSelected = !(favList[i].isSelected);
     emit(state.copyWith(favoriteList: List.from(favList), selectedList: List.from(selectedList)));
   }
 
