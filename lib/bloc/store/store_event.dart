@@ -9,3 +9,10 @@ class FetchProductsData extends StoreEvent {
   @override
   List<Object> get props => [];
 }
+
+class FilterSearch extends StoreEvent {
+  final String searchedText;
+  FilterSearch({required this.searchedText});
+  @override
+  List<Object> get props => [];
+}
