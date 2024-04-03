@@ -4,8 +4,7 @@ import 'package:bloc_app/bloc/image_picker/image_picker_bloc.dart';
 import 'package:bloc_app/bloc/store/store_bloc.dart';
 import 'package:bloc_app/bloc/switch/switch_bloc.dart';
 import 'package:bloc_app/bloc/todo_list/todo_list_bloc.dart';
-import 'package:bloc_app/presentation/favorite/favorite_screen.dart';
-import 'package:bloc_app/presentation/store/store_screen.dart';
+import 'package:bloc_app/presentation/cubit/counter/counter_view.dart';
 // import 'package:bloc_app/presentation/image_picker/image_picker_screen.dart';
 // import 'package:bloc_app/presentation/switch/switch_screen.dart';
 // import 'package:bloc_app/presentation/todo_list/todo_list_screen.dart';
@@ -24,33 +23,36 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (_) => CounterBloc()),
-        BlocProvider(create: (_) => SwitchBloc()),
-        BlocProvider(
-          create: (_) => ImagePickerBloc(ImagePickerUtils()),
-        ),
-        BlocProvider(create: (_) => ToDoBloc()),
-        BlocProvider(
-          create: (_) => FavoriteBloc(),
-        ),
-        BlocProvider(create: (_) => StoreBloc()),
-      ],
-      child: MaterialApp(
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
-          ),
-          home: const StoreScreen()
-          // FavoriteScreen()
-          // ToDoListScreen()
-          // ImagePickerScreen()
-          // SwitchScreen()
-          // CounterScreen(),
-          // const EquatablePage(title: 'EQUATABLE'),
-          ),
-    );
+    return
+        // MultiBlocProvider(
+        //   providers: [
+        //     BlocProvider(create: (_) => CounterBloc()),
+        //     BlocProvider(create: (_) => SwitchBloc()),
+        //     BlocProvider(
+        //       create: (_) => ImagePickerBloc(ImagePickerUtils()),
+        //     ),
+        //     BlocProvider(create: (_) => ToDoBloc()),
+        //     BlocProvider(
+        //       create: (_) => FavoriteBloc(),
+        //     ),
+        //     BlocProvider(create: (_) => StoreBloc()),
+        //   ],
+        //   child:
+        MaterialApp(
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+              useMaterial3: true,
+            ),
+            home: const CounterView()
+            // StoreScreen()
+            // FavoriteScreen()
+            // ToDoListScreen()
+            // ImagePickerScreen()
+            // SwitchScreen()
+            // CounterScreen(),
+            // const EquatablePage(title: 'EQUATABLE'),
+            );
+    // );
   }
 }
