@@ -1,15 +1,5 @@
-import 'package:bloc_app/bloc/counter/counter_bloc.dart';
-import 'package:bloc_app/bloc/favorite/favorite_bloc.dart';
-import 'package:bloc_app/bloc/image_picker/image_picker_bloc.dart';
-import 'package:bloc_app/bloc/store/store_bloc.dart';
-import 'package:bloc_app/bloc/switch/switch_bloc.dart';
-import 'package:bloc_app/bloc/todo_list/todo_list_bloc.dart';
+import 'package:bloc_app/cubit/counter/counter_cubit.dart';
 import 'package:bloc_app/presentation/cubit/counter/counter_view.dart';
-// import 'package:bloc_app/presentation/image_picker/image_picker_screen.dart';
-// import 'package:bloc_app/presentation/switch/switch_screen.dart';
-// import 'package:bloc_app/presentation/todo_list/todo_list_screen.dart';
-// import 'package:image_picker/image_picker.dart';
-import 'package:bloc_app/utils/image_picker_utils/image_picker_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,9 +13,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return
-        // MultiBlocProvider(
-        //   providers: [
+    return MultiBlocProvider(
+      providers: [
+        // Bloc dependencies --------------------
         //     BlocProvider(create: (_) => CounterBloc()),
         //     BlocProvider(create: (_) => SwitchBloc()),
         //     BlocProvider(
@@ -36,23 +26,25 @@ class MyApp extends StatelessWidget {
         //       create: (_) => FavoriteBloc(),
         //     ),
         //     BlocProvider(create: (_) => StoreBloc()),
-        //   ],
-        //   child:
-        MaterialApp(
-            title: 'Flutter Demo',
-            theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-              useMaterial3: true,
-            ),
-            home: const CounterView()
-            // StoreScreen()
-            // FavoriteScreen()
-            // ToDoListScreen()
-            // ImagePickerScreen()
-            // SwitchScreen()
-            // CounterScreen(),
-            // const EquatablePage(title: 'EQUATABLE'),
-            );
-    // );
+        // Cubit dependencies --------------------
+
+        BlocProvider(create: (_) => CounterCubit())
+      ],
+      child: MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+          ),
+          home: const CounterView()
+          // StoreScreen()
+          // FavoriteScreen()
+          // ToDoListScreen()
+          // ImagePickerScreen()
+          // SwitchScreen()
+          // CounterScreen(),
+          // const EquatablePage(title: 'EQUATABLE'),
+          ),
+    );
   }
 }

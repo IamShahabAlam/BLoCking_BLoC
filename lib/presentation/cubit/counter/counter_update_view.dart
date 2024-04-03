@@ -1,18 +1,10 @@
 import 'package:bloc_app/cubit/counter/counter_cubit.dart';
-import 'package:bloc_app/presentation/cubit/counter/counter_update_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CounterView extends StatefulWidget {
-  const CounterView({super.key});
+class CounterUpdateView extends StatelessWidget {
+  const CounterUpdateView({super.key});
 
-  @override
-  State<CounterView> createState() => _CounterViewState();
-}
-
-class _CounterViewState extends State<CounterView> {
-  // direct instance without MultiProvider in main.dart.
-  // final counterCubit = CounterCubit();
   @override
   Widget build(BuildContext context) {
     // Linked instance with MultiProvider in main.dart.
@@ -28,15 +20,12 @@ class _CounterViewState extends State<CounterView> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          BlocBuilder<CounterCubit, int>(
-              bloc: counterCubit,
-              builder: (_, state) {
-                return Text(
-                  state.toString(),
-                  style: const TextStyle(fontSize: 45.0),
-                );
-              }),
-          const SizedBox(height: 30),
+          // BlocBuilder<CounterCubit, int>(
+          //     bloc: counterCubit,
+          //     builder: (_, state) {
+          //       return Text(state.toString());
+          //     }),
+          const SizedBox(height: 60),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -58,9 +47,6 @@ class _CounterViewState extends State<CounterView> {
           )
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const CounterUpdateView())),
-          child: const Icon(Icons.navigate_next)),
     );
   }
 }
