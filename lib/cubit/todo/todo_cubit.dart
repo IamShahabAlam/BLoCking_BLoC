@@ -45,12 +45,20 @@ class ToDoCubit extends Cubit<ToDoState> {
 
   selectAll() {
     List<FavoriteModel> tempList = [...state.favList];
+    // / failed
     // tempList.forEach((elem) => elem.isSelected = true);
+    /*
     for (var i = 0; i < tempList.length; i++) {
       // ask GPT why it's working
       tempList[i] = tempList[i].copyWith(isSelected: true);
     }
-    anySelectedFound(tempList);
+    */
+    // gpt approach
+    tempList = tempList.map((elem) => elem.copyWith(isSelected: true)).toList();
+    // for each indexed
+    // tempList.forEachIndexed((i, elem) => tempList[i] = elem.copyWith(isSelected: true));
+
+    // anySelectedFound(tempList);
     emit(state.copyWith(favList: tempList));
   }
 
@@ -68,6 +76,12 @@ class ToDoCubit extends Cubit<ToDoState> {
   anySelectedFound(tempList) {
     bool selectedFound = tempList.any((elem) => elem.isSelected == true);
     emit(state.copyWith(selectedFound: selectedFound));
+  }
+
+  editToDo(int i, String newVal) {
+    List<FavoriteModel> tempList = [...state.favList];
+    tempList[i] = tempList[i].copyWith(name: newVal);
+    emit(state.copyWith(favList: tempList));
   }
 
   @override
