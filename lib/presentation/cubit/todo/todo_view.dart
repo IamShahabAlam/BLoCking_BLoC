@@ -72,8 +72,8 @@ class _TodoViewState extends State<TodoView> {
                   return state.favList.isEmpty
                       ? ListView(
                           children: [
-                            SizedBox(height: (AppBar().preferredSize.height - MediaQuery.sizeOf(context).height)),
-                            Center(child: Text('No Data Found!')),
+                            SizedBox(height: (MediaQuery.sizeOf(context).height * 0.5) - AppBar().preferredSize.height),
+                            const Center(child: Text('No Data Found!')),
                           ],
                         )
                       : ListView.builder(
