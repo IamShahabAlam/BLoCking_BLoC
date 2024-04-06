@@ -12,6 +12,7 @@ class TodoView extends StatefulWidget {
 }
 
 class _TodoViewState extends State<TodoView> {
+  final TextEditingController editController = TextEditingController();
   @override
   void initState() {
     context.read<ToDoCubit>().fetchData();
@@ -87,15 +88,71 @@ class _TodoViewState extends State<TodoView> {
                                       // context.read<FavoriteBloc>().add(MarkSelect(index: i));
                                       todoCubit.markSelected(i);
                                     }),
-                                trailing: IconButton(
-                                    onPressed: () {
-                                      // context.read<FavoriteBloc>().add(MarkFavorite(index: i));
-                                      todoCubit.markFavorite(i);
-                                    },
-                                    icon: Icon(
-                                      state.favList[i].isFavorite ? Icons.favorite : Icons.favorite_border,
-                                      color: state.favList[i].isFavorite ? Colors.red : Colors.grey,
-                                    )));
+                                trailing: SizedBox(
+                                  width: 120,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      IconButton(
+                                          onPressed: () {
+                                            editController.text = state.favList[i].name;
+                                            showModalBottomSheet(
+                                              isDismissible: true,
+                                              context: context,
+                                              builder: (context) {
+                                                return Column(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    Padding(
+                                                      padding: const EdgeInsets.fromLTRB(12, 0, 12, 20),
+                                                      child: TextField(
+                                                        controller: editController,
+                                                        onChanged: (newVal) {},
+                                                        onSubmitted: (newVal) {},
+                                                        onTapOutside: (_) => FocusManager.instance.primaryFocus!.unfocus(),
+                                                        decoration: InputDecoration(
+                                                          border: OutlineInputBorder(
+                                                              borderSide: BorderSide(color: Theme.of(context).colorScheme.primaryContainer)),
+                                                          hintText: 'Updated Name',
+                                                          labelText: "Updated Name",
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    MaterialButton(
+                                                      minWidth: 200,
+                                                      height: 40,
+                                                      onPressed: () {
+                                                        todoCubit.editToDo(i, editController.text);
+                                                        Navigator.pop(context);
+                                                      },
+                                                      color: Theme.of(context).colorScheme.primary,
+                                                      child: Text(
+                                                        'Update',
+                                                        style: TextStyle(color: Colors.white),
+                                                      ),
+                                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+                                                    )
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                          },
+                                          icon: Icon(
+                                            Icons.edit_outlined,
+                                            color: Theme.of(context).colorScheme.primary,
+                                          )),
+                                      IconButton(
+                                          onPressed: () {
+                                            // context.read<FavoriteBloc>().add(MarkFavorite(index: i));
+                                            todoCubit.markFavorite(i);
+                                          },
+                                          icon: Icon(
+                                            state.favList[i].isFavorite ? Icons.favorite : Icons.favorite_border,
+                                            color: state.favList[i].isFavorite ? Colors.red : Colors.grey,
+                                          )),
+                                    ],
+                                  ),
+                                ));
                           },
                         );
               }
