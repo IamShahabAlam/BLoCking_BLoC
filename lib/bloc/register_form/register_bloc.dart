@@ -10,6 +10,10 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     on<OnLogout>(_onLogout);
   }
 
-  void _onRegister(OnRegister event, Emitter<RegisterState> emit) {}
+  void _onRegister(OnRegister event, Emitter<RegisterState> emit) {
+    RegisterModel a = event.regModel;
+    print(a);
+  }
+
   void _onLogout(OnLogout event, Emitter<RegisterState> emit) {}
 }
