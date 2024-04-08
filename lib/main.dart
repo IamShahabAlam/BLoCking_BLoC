@@ -1,5 +1,7 @@
+import 'package:bloc_app/bloc/register_form/register_bloc.dart';
 import 'package:bloc_app/cubit/counter/counter_cubit.dart';
 import 'package:bloc_app/cubit/todo/todo_cubit.dart';
+import 'package:bloc_app/presentation/bloc/register_form/register_screen.dart';
 // import 'package:bloc_app/presentation/cubit/counter/counter_view.dart';
 import 'package:bloc_app/presentation/cubit/todo/todo_view.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +30,8 @@ class MyApp extends StatelessWidget {
         //       create: (_) => FavoriteBloc(),
         //     ),
         //     BlocProvider(create: (_) => StoreBloc()),
+
+        BlocProvider(create: (_) => RegisterBloc()),
         // Cubit dependencies --------------------
 
         BlocProvider(create: (_) => CounterCubit()),
@@ -35,11 +39,13 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
           title: 'Flutter Demo',
+          themeMode: ThemeMode.dark,
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: const TodoView()
+          home: const RegisterScreen()
+          // TodoView()
           // CounterView()
           // StoreScreen()
           // FavoriteScreen()

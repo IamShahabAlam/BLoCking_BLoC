@@ -1,10 +1,10 @@
 import 'package:bloc_app/utils/configs/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class LoginField extends StatelessWidget {
+class CustomField extends StatelessWidget {
   final String hintText;
   final TextEditingController controller;
-  const LoginField({
+  const CustomField({
     Key? key,
     required this.hintText,
     required this.controller,
@@ -16,7 +16,8 @@ class LoginField extends StatelessWidget {
       constraints: const BoxConstraints(
         maxWidth: 400,
       ),
-      child: TextFormField(
+      child: TextField(
+        style: TextStyle(color: AppColors.gradient1),
         controller: controller,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.all(27),
@@ -35,6 +36,7 @@ class LoginField extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           hintText: hintText,
+          labelText: hintText,
         ),
       ),
     );
