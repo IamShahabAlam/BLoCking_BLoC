@@ -39,11 +39,15 @@ class AfterRegisterScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            ListTile(title: Text(state.token), subtitle: const Text('Token')),
-            ListTile(title: Text(state.registerModel.name), subtitle: const Text('Name')),
-            ListTile(title: Text(state.registerModel.city), subtitle: const Text('City')),
-            ListTile(title: Text(state.registerModel.age.toString()), subtitle: const Text('Age')),
-            ListTile(title: Text(state.registerModel.email), subtitle: const Text('Email')),
+            ListTile(tileColor: Theme.of(context).colorScheme.primaryContainer, title: Text(state.token), subtitle: const Text('Token')),
+            ListTile(tileColor: Theme.of(context).colorScheme.primaryContainer, title: Text(state.registerModel.name), subtitle: const Text('Name')),
+            ListTile(tileColor: Theme.of(context).colorScheme.primaryContainer, title: Text(state.registerModel.city), subtitle: const Text('City')),
+            ListTile(
+                tileColor: Theme.of(context).colorScheme.primaryContainer,
+                title: Text(state.registerModel.age.toString()),
+                subtitle: const Text('Age')),
+            ListTile(
+                tileColor: Theme.of(context).colorScheme.primaryContainer, title: Text(state.registerModel.email), subtitle: const Text('Email')),
             CustomButton(text: 'Logout', onPressed: () => context.read<RegisterBloc>().add(OnLogout()))
           ],
         );
