@@ -3,4 +3,5 @@ class AppStrings {
   static const String weatherEndpoint = 'https://api.openweathermap.org/data/2.5/forecast';
 
   static const String weatherApiKey = '4af409a4c67493e64a7c44c96d9c51e3';
+  static const String errorMsg = 'Something Went Wrong!';
 }
